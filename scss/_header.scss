@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  background-color: $border-color;
+  padding: 16px 8px;
+  &__button {
+    color: $main-txt-color;
+    background-color: $background-color;
+    opacity: 0.5;
+    border-radius: 5px;
+  }
+  &__search {
+    width: 60%;
+  }
+}

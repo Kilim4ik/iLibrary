@@ -1,0 +1,2 @@
+const allBooks = [];
+const users = [];

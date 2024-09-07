@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__file-system">
+        <button class="header__button">Store</button>
+        <button class="header__button" id="user-books">Books</button>
+        <button class="header__button">PDFs</button>
+      </div>
+      <input type="text" class="header__search" />
+      <div class="rotation">
+        <button class="header__button user-login">Log In</button>
+      </div>
+    </header>
+    <main></main>
+    <div class="backdrop login-backdrop is-hidden">
+      <div class="login__modal-window">
+        <form data-action="login" class="login__form">
+          <input type="text" placeholder="email" id="login-email" />
+          <input type="text" placeholder="password" id="login-password" />
+          <div class="login__content">
+            <p>Create account</p>
+            <button>Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="backdrop signup-backdrop is-hidden">
+      <div class="signup__modal-window">
+        <form data-action="signup" class="signup__form">
+          <input type="text" placeholder="name" id="signup-name" />
+          <input type="text" placeholder="email" id="signup-email" />
+          <input type="text" placeholder="password" id="signup-password" />
+          <div class="signup__content">
+            <p>I have account</p>
+            <button>Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="./js/arrays.js"></script>
+    <script src="./js/books.js"></script>
+    <script src="./js/finder.js"></script>
+    <script src="./js/user-books.js"></script>
+    <script src="./js/login-modal.js"></script>
+    <script src="./js/render.js"></script>
+  </body>
+</html>
