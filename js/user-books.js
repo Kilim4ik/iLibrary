@@ -8,6 +8,9 @@ class User {
     this.#password = password;
     this.userBooks = [];
   }
+  addUser() {
+    users.push(this);
+  }
   createNewBook() {}
 }
 const buttonUserBooks = document.querySelector("#user-books");

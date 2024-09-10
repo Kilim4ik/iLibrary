@@ -17,9 +17,20 @@ header.addEventListener("click", () => {
     }
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      console.log(1);
     });
     signUpForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      let arr = [];
+      for (let elem of signUpForm.children) {
+        arr.push(elem.value);
+      }
+      const newUser = new User({
+        name: arr[0],
+        email: arr[1],
+        password: arr[2],
+      });
+      newUser.addUser();
     });
   });
 });
