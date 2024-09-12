@@ -1,9 +1,17 @@
 .header {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   position: sticky;
   background-color: $border-color;
   padding: 16px 8px;
+  z-index: 9;
+
+  &__nav {
+    &-list {
+      display: none;
+    }
+  }
   &__button {
     color: $main-txt-color;
     background-color: $background-color;
@@ -12,5 +20,19 @@
   }
   &__search {
     width: 60%;
+  }
+}
+
+@media (width > 800px) {
+  .header {
+    grid-template-columns: 1fr 2fr 1fr;
+    &__nav-list {
+      display: flex;
+      justify-content: start;
+      gap: 10px;
+    }
+    &__search {
+      width: 100%;
+    }
   }
 }

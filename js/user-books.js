@@ -1,17 +1,19 @@
 "use strict";
+let thisUser;
+thisUser = JSON.parse(localStorage.getItem("user"));
 class User {
-  #email;
-  #password;
+  // #email;
+  // #password;
   constructor({ name, email, password }) {
     this.name = name;
-    this.#email = email;
-    this.#password = password;
+    this.email = email;
+    this.password = password;
     this.userBooks = [];
   }
   addUser() {
     users.push(this);
   }
-  createNewBook() {}
+  addBook(elem) {
+    this.userBooks.push(elem);
+  }
 }
-const buttonUserBooks = document.querySelector("#user-books");
-buttonUserBooks.addEventListener("click", () => {});

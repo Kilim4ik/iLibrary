@@ -4,3 +4,6 @@
 .is-hidden {
   display: none !important;
 }
+body:has(.burger-menu__checker:checked) {
+  overflow: hidden;
+}

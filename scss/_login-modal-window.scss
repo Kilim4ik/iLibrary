@@ -10,7 +10,8 @@
   align-items: center;
 }
 .login,
-.signup {
+.signup,
+.create-book {
   &__modal-window {
     background-color: $main-txt-color;
     border-radius: 12px;

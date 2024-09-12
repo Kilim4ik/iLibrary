@@ -6,12 +6,21 @@
   display: none !important;
 }
 
+body:has(.burger-menu__checker:checked) {
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   position: sticky;
   background-color: #ad792a;
   padding: 16px 8px;
+  z-index: 9;
+}
+.header__nav-list {
+  display: none;
 }
 .header__button {
   color: #fff;
@@ -23,6 +32,104 @@
   width: 60%;
 }
 
+@media (width > 800px) {
+  .header {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .header__nav-list {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+  }
+  .header__search {
+    width: 100%;
+  }
+}
+.burger-menu {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.burger-menu__cont {
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 3px;
+  border-radius: 5px;
+  justify-content: center;
+  align-content: space-evenly;
+  background-color: #854318;
+  padding: 0 4px 6px;
+}
+.burger-menu__line {
+  background-color: #ad792a;
+  display: block;
+  width: 26px;
+  height: 4px;
+  border-radius: 5px;
+  transition: transform 0.4s, opacity 0.4s;
+}
+.burger-menu__line::before {
+  content: "";
+  background-color: #ad792a;
+  display: block;
+  width: 26px;
+  height: 4px;
+  border-radius: 5px;
+  position: relative;
+  top: 7px;
+  transition: transform 0.4s, top 0.4s;
+}
+.burger-menu__line-cont {
+  position: relative;
+}
+.burger-menu__checker {
+  display: none;
+}
+.burger-menu__checker:checked ~ label .burger-menu__line {
+  transform: rotate(45deg);
+}
+.burger-menu__checker:checked ~ label .burger-menu__line-cont {
+  transform: translateY(200%);
+}
+.burger-menu__checker:checked ~ label .burger-menu__line::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+.burger-menu__checker:checked ~ label .burger-menu__line-cont.burger-menu__line-cont--none {
+  opacity: 0;
+}
+
+.mobile-menu {
+  width: 80%;
+  background-color: #fff;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+.mobile-menu-backdrop {
+  justify-content: start !important;
+}
+.mobile-menu__nav-list {
+  width: 100%;
+  display: grid;
+  gap: 5em;
+}
+.mobile-menu__button {
+  width: 90%;
+  background-color: #fff;
+  border: none;
+  font-size: 24px;
+}
+
+@media (width > 800px) {
+  .burger-menu {
+    display: none;
+  }
+}
 main {
   background-color: #854318;
   min-height: 100%;
@@ -45,25 +152,29 @@ main {
 }
 
 .login__modal-window,
-.signup__modal-window {
+.signup__modal-window,
+.create-book__modal-window {
   background-color: #fff;
   border-radius: 12px;
   padding: 30px 20px;
 }
 .login__form,
-.signup__form {
+.signup__form,
+.create-book__form {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 .login__content,
-.signup__content {
+.signup__content,
+.create-book__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 40px;
 }
 .login__content p,
-.signup__content p {
+.signup__content p,
+.create-book__content p {
   font-size: 12px;
 }

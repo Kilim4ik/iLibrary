@@ -9,17 +9,66 @@
   </head>
   <body>
     <header class="header">
-      <div class="header__file-system">
-        <button class="header__button">Store</button>
-        <button class="header__button" id="user-books">Books</button>
-        <button class="header__button">PDFs</button>
-      </div>
+      <nav class="header__nav">
+        <div class="burger-menu">
+          <input
+            type="checkbox"
+            class="burger-menu__checker"
+            id="burger-checker"
+          />
+          <label for="burger-checker" id="burger-button">
+            <span class="burger-menu__cont">
+              <span class="burger-menu__line-cont burger-menu__line-cont--down">
+                <!-- before for line -->
+                <span class="burger-menu__line"></span>
+              </span>
+              <span class="burger-menu__line-cont burger-menu__line-cont--none">
+                <!-- before for line -->
+                <span class="burger-menu__line"></span>
+              </span>
+            </span>
+          </label>
+        </div>
+        <ul class="header__nav-list">
+          <li>
+            <button class="header__button" id="create-book">Create book</button>
+          </li>
+          <li>
+            <button class="header__button" id="user-books">My books</button>
+          </li>
+          <li>
+            <button class="header__button" id="all-books">All books</button>
+          </li>
+        </ul>
+      </nav>
       <input type="text" class="header__search" />
       <div class="rotation">
+        <p class="header__user-name"></p>
         <button class="header__button user-login">Log In</button>
       </div>
     </header>
     <main></main>
+    <div class="backdrop mobile-menu-backdrop is-hidden">
+      <div class="mobile-menu">
+        <ul class="mobile-menu__nav-list">
+          <li>
+            <button class="mobile-menu__button" id="create-book">
+              Create book
+            </button>
+          </li>
+          <li>
+            <button class="mobile-menu__button" id="user-books">
+              My books
+            </button>
+          </li>
+          <li>
+            <button class="mobile-menu__button" id="all-books">
+              All books
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="backdrop login-backdrop is-hidden">
       <div class="login__modal-window">
         <form data-action="login" class="login__form">
@@ -45,11 +94,31 @@
         </form>
       </div>
     </div>
+    <div class="backdrop create-book-backdrop is-hidden">
+      <div class="create-book__modal-window">
+        <form data-action="create-book" class="create-book__form">
+          <input type="text" placeholder="Book's name" id="create-book-name" />
+          <input
+            type="text"
+            placeholder="Description"
+            id="create-book-description"
+          />
+          <input type="file" id="create-book-file" />
+          <div class="create-book__content">
+            <button>Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script src="./js/arrays.js"></script>
+    <script src="./js/user-books.js"></script>
+    <script src="./js/nav.js"></script>
     <script src="./js/books.js"></script>
     <script src="./js/finder.js"></script>
-    <script src="./js/user-books.js"></script>
+    <script src="./js/burger-menu.js"></script>
     <script src="./js/login-modal.js"></script>
+    <script src="./js/create-book.js"></script>
     <script src="./js/render.js"></script>
   </body>
 </html>

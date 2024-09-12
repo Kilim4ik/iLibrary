@@ -5,6 +5,7 @@ class Book {
     this.name = name;
     this.description = description;
     this.file = file;
+    this.authtor = thisUser ? thisUser.name : "error";
   }
   deleteBook() {}
   addBook() {
