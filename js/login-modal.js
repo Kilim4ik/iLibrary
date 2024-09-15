@@ -12,13 +12,7 @@ header.addEventListener("click", (e) => {
   navigation(e);
 });
 document.addEventListener("click", (e) => {
-  if (
-    e.target == loginBackdrop ||
-    e.target == signUpBackdrop ||
-    e.target == createBookBackdrop
-  )
-    closeModalWindow(e);
-
+  validationCloseModal();
   if (e.target.nodeName == "P") {
     loginBackdrop.classList.toggle("is-hidden");
     signUpBackdrop.classList.toggle("is-hidden");
@@ -49,8 +43,3 @@ signUpForm.addEventListener("submit", (e) => {
   });
   newUser.addUser();
 });
-function closeModalWindow() {
-  loginBackdrop.classList.add("is-hidden");
-  signUpBackdrop.classList.add("is-hidden");
-  createBookBackdrop.classList.add("is-hidden");
-}

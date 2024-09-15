@@ -1,0 +1,21 @@
+.book-description {
+  &__window {
+    min-width: 80%;
+    min-height: 70%;
+    background-color: #fff;
+    border-radius: 12px;
+    display: flex;
+    padding: 30px 20px;
+  }
+  &__img {
+    display: block;
+    height: 100%;
+    width: 50%;
+  }
+  &__book-name {
+    font-size: 20px;
+  }
+  &__book-authtor {
+    font-size: 16px;
+  }
+}

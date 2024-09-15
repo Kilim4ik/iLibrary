@@ -178,3 +178,23 @@ main {
 .create-book__content p {
   font-size: 12px;
 }
+
+.book-description__window {
+  min-width: 80%;
+  min-height: 70%;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  padding: 30px 20px;
+}
+.book-description__img {
+  display: block;
+  height: 100%;
+  width: 50%;
+}
+.book-description__book-name {
+  font-size: 20px;
+}
+.book-description__book-authtor {
+  font-size: 16px;
+}
