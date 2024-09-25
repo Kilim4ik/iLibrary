@@ -6,9 +6,13 @@ const signUpForm = document.querySelector(".signup__form");
 const createBookForm = document.querySelector(".create-book__form");
 const header = document.querySelector(".header");
 const labelUser = document.querySelector(".header__user-name");
+const logOutButton = document.querySelector(".user-logout");
+const logInButton = document.querySelector(".user-login");
+
 header.addEventListener("click", (e) => {
-  if (e.target.classList == "header__button user-login")
+  if (e.target == logInButton) {
     loginBackdrop.classList.remove("is-hidden");
+  }
   navigation(e);
 });
 document.addEventListener("click", (e) => {
@@ -26,6 +30,12 @@ loginForm.addEventListener("submit", (e) => {
     labelUser.textContent = thisUser.name;
     closeModalWindow();
     localStorage.setItem("user", JSON.stringify(thisUser));
+
+    switchOnLogOut();
+    logOutButton.addEventListener("click", () => {
+      switchOnLogIn();
+      closeModalWindow(e);
+    });
   }
 });
 signUpForm.addEventListener("submit", (e) => {
@@ -43,3 +53,16 @@ signUpForm.addEventListener("submit", (e) => {
   });
   newUser.addUser();
 });
+
+function switchOnLogOut() {
+  logOutButton.classList.add("user-logout");
+  logOutButton.classList.remove("user-login");
+  logInButton.textContent = "Log out ";
+}
+function switchOnLogIn() {
+  thisUser = null;
+  logOutButton.classList.add("user-login");
+  logOutButton.classList.remove("user-logout");
+  logInButton.textContent = "Log in ";
+  labelUser.textContent = "";
+}

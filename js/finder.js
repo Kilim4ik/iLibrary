@@ -5,6 +5,5 @@ headerInput.addEventListener("input", () => {
   const newArr = allBooks.filter(({ name }) =>
     name.toLowerCase().includes(headerInput.value.toLowerCase())
   );
-
-  console.log(newArr);
+  renderBooks(newArr);
 });

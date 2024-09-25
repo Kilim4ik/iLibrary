@@ -6,6 +6,7 @@ createBookForm.addEventListener("submit", (e) => {
   for (let elem of createBookForm.children) {
     arr.push(elem.value);
   }
+  if(arr[2].size > 5 ){}
   const newBook = new Book({
     name: arr[0],
     description: arr[1],
