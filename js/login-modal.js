@@ -1,13 +1,17 @@
-const loginBackdrop = document.querySelector(".login-backdrop");
-const signUpBackdrop = document.querySelector(".signup-backdrop");
-const createBookBackdrop = document.querySelector(".create-book-backdrop");
-const loginForm = document.querySelector(".login__form");
-const signUpForm = document.querySelector(".signup__form");
-const createBookForm = document.querySelector(".create-book__form");
-const header = document.querySelector(".header");
-const labelUser = document.querySelector(".header__user-name");
-const logOutButton = document.querySelector(".user-logout");
-const logInButton = document.querySelector(".user-login");
+import {
+  loginBackdrop,
+  signUpBackdrop,
+  createBookBackdrop,
+  loginForm,
+  signUpForm,
+  createBookForm,
+  header,
+  labelUser,
+  logOutButton,
+  logInButton,
+} from "./constants.js";
+import { validationCloseModal } from "./close-modals.js";
+import { navigation } from "./nav.js";
 
 header.addEventListener("click", (e) => {
   if (e.target == logInButton) {

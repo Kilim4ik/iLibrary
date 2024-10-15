@@ -1,4 +1,4 @@
-// import { createBook } from "./dataBooksComands";
+import { createBook } from "./dataBooksComands.js";
 createBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
   closeModalWindow(e);
@@ -10,11 +10,11 @@ createBookForm.addEventListener("submit", (e) => {
   if (arr[2].size > 5) {
   }
   const newBook = new Book({
-    name: arr[0],
+    bookName: arr[0],
     description: arr[1],
-    file: arr[2],
+    bookFile: arr[2],
   });
-  // createBook(newBook);
+  createBook(newBook);
   thisUser.addBook(newBook);
   newBook.addBook();
 });

@@ -113,18 +113,20 @@
     <div class="backdrop book-decriprion__backdrop is-hidden">
       <div class="book-description__window"></div>
     </div>
-    <script src="./main.js"></script>
+    <script>
+      const allBooks = [];
+      const users = [];
+      let thisUser = JSON.parse(localStorage.getItem("user")) || undefined;
+    </script>
 
-    <script src="./js/arrays.js"></script>
-    <script src="./js/user-books.js"></script>
-    <script src="./js/nav.js"></script>
-    <script src="./js/books.js"></script>
-    <script src="./js/finder.js"></script>
-    <script src="./js/close-modals.js"></script>
-    <script src="./js/burger-menu.js"></script>
-    <script src="./js/login-modal.js"></script>
+    <!-- <script type="module" src="./js/arrays.js"></script> -->
+    <script type="module" src="./js/nav.js"></script>
+    <script type="module" src="./js/finder.js"></script>
+    <script type="module" src="./js/close-modals.js"></script>
+    <script type="module" src="./js/burger-menu.js"></script>
+    <script type="module" src="./js/login-modal.js"></script>
     <script type="module" src="./js/create-book.js"></script>
-    <script src="./js/read-books.js"></script>
-    <script src="./js/render.js"></script>
+    <script type="module" src="./js/read-books.js"></script>
+    <script type="module" src="./js/render.js"></script>
   </body>
 </html>

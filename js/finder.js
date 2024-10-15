@@ -1,9 +1,12 @@
 "use strict";
 
-const headerInput = document.querySelector(".header__search");
+import { headerInput, booksReg } from "./constants.js";
+import { renderBooks } from "./render.js";
+
 headerInput.addEventListener("input", () => {
-  const newArr = allBooks.filter(({ name }) =>
-    name.toLowerCase().includes(headerInput.value.toLowerCase())
+  const newArr = booksReg.filter(({ bookName }) =>
+    bookName.toLowerCase().includes(headerInput.value.toLowerCase())
   );
+
   renderBooks(newArr);
 });
