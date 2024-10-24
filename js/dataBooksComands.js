@@ -43,11 +43,11 @@ export const getBook = () => {
       // handle error
     });
 };
-export const changeBook = (bookID, book) => {
+export const changeBook = (bookID, { bookName, description, bookFile }) => {
   fetch(`${booksURL}/${bookID}`, {
     method: "PUT", // or PATCH
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ completed: true }),
+    body: JSON.stringify({ bookName, description, bookFile }),
   })
     .then((res) => {
       if (res.ok) {

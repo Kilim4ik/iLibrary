@@ -1,4 +1,5 @@
-
+import { checkbox, mobileMenu } from "./constants.js";
+import { navigation } from "./nav.js";
 
 checkbox.addEventListener("change", () => {
   mobileMenu.classList.toggle("is-hidden");

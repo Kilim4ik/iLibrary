@@ -11,7 +11,8 @@
 }
 .login,
 .signup,
-.create-book {
+.create-book,
+.change-book {
   &__modal-window {
     background-color: $main-txt-color;
     border-radius: 12px;

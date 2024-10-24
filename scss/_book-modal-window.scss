@@ -1,4 +1,7 @@
 .book-description {
+  &__content {
+    width: 50%;
+  }
   &__window {
     min-width: 80%;
     min-height: 70%;
@@ -12,10 +15,43 @@
     height: 100%;
     width: 50%;
   }
-  &__book-name {
-    font-size: 20px;
+  &__book {
+    &-name {
+      font-size: 20px;
+    }
+    &-authtor {
+      font-size: 16px;
+    }
+    &-description {
+      margin-bottom: 20px;
+    }
+    &-button {
+      background-color: $main-txt-color;
+      padding: 8px 12px;
+      border: 1px solid black;
+      border-radius: 16px;
+    }
+    &-link {
+      text-decoration: none;
+      color: #000;
+      padding: 8px 12px;
+      border: 1px solid black;
+      border-radius: 16px;
+    }
   }
-  &__book-authtor {
-    font-size: 16px;
+}
+@media (max-width: 1080px) {
+  .book-description {
+    &__window {
+      max-width: 80%;
+      max-height: 40%;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .book-description {
+    &__window {
+      min-height: 60%;
+    }
   }
 }

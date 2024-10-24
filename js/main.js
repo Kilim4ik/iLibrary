@@ -1,4 +1,5 @@
 import {
+  // users,
   loginBackdrop,
   signUpBackdrop,
   createBookBackdrop,
@@ -10,20 +11,34 @@ import {
   logOutButton,
   logInButton,
 } from "./constants.js";
-import { validationCloseModal } from "./close-modals.js";
+import { validationCloseModal, closeModalWindow } from "./close-modals.js";
 import { navigation } from "./nav.js";
+import { getUser, createUser } from "./dataUsersComands.js";
+const users = await getUser();
 
 header.addEventListener("click", (e) => {
   if (e.target == logInButton) {
     loginBackdrop.classList.remove("is-hidden");
   }
+  if (e.target == logOutButton) {
+    switchOnLogIn();
+  }
+
   navigation(e);
 });
-document.addEventListener("click", (e) => {
+
+loginBackdrop.addEventListener("click", (e) => {
   validationCloseModal();
   if (e.target.nodeName == "P") {
     loginBackdrop.classList.toggle("is-hidden");
     signUpBackdrop.classList.toggle("is-hidden");
+  }
+});
+signUpBackdrop.addEventListener("click", (e) => {
+  validationCloseModal();
+  if (e.target.nodeName == "P") {
+    signUpBackdrop.classList.toggle("is-hidden");
+    loginBackdrop.classList.toggle("is-hidden");
   }
 });
 loginForm.addEventListener("submit", (e) => {
@@ -31,7 +46,7 @@ loginForm.addEventListener("submit", (e) => {
   const user = users.find((elem) => elem.email == loginForm.children[0].value);
   if (user.password == loginForm.children[1].value) {
     thisUser = user;
-    labelUser.textContent = thisUser.name;
+    labelUser.textContent = thisUser.login;
     closeModalWindow();
     localStorage.setItem("user", JSON.stringify(thisUser));
 
@@ -50,23 +65,25 @@ signUpForm.addEventListener("submit", (e) => {
   for (let elem of signUpForm.children) {
     arr.push(elem.value);
   }
-  const newUser = new User({
-    name: arr[0],
+  createUser({
+    login: arr[0],
     email: arr[1],
     password: arr[2],
   });
-  newUser.addUser();
 });
 
 function switchOnLogOut() {
-  logOutButton.classList.add("user-logout");
-  logOutButton.classList.remove("user-login");
-  logInButton.textContent = "Log out ";
+  logOutButton.classList.remove("is-hidden");
+  logInButton.classList.add("is-hidden");
+
+  labelUser.textContent = thisUser.login;
 }
 function switchOnLogIn() {
+  logInButton.classList.remove("is-hidden");
+  logOutButton.classList.add("is-hidden");
+
   thisUser = null;
-  logOutButton.classList.add("user-login");
-  logOutButton.classList.remove("user-logout");
-  logInButton.textContent = "Log in ";
+
   labelUser.textContent = "";
 }
+if (thisUser) switchOnLogOut();

@@ -3,6 +3,7 @@ import {
   signUpBackdrop,
   createBookBackdrop,
   bookBackdrop,
+  changeBookBackdrop,
 } from "./constants.js";
 export const validationCloseModal = () => {
   document.addEventListener("click", (e) => {
@@ -13,5 +14,6 @@ export function closeModalWindow() {
   loginBackdrop.classList.add("is-hidden");
   signUpBackdrop.classList.add("is-hidden");
   createBookBackdrop.classList.add("is-hidden");
+  changeBookBackdrop.classList.add("is-hidden");
   bookBackdrop.classList.add("is-hidden");
 }

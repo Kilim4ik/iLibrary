@@ -1,5 +1,5 @@
 const usersURL = "https://6707785ca0e04071d22a73ed.mockapi.io/users";
-export const createUser = (book) => {
+export const createUser = (user) => {
   //   bookName: "test",
   //   description: "description",
   //   bookFile: null,

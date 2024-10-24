@@ -44,10 +44,12 @@
       <input type="text" class="header__search" />
       <div class="rotation">
         <p class="header__user-name"></p>
-        <button class="header__button user-login user-logout">Log In</button>
+        <button class="header__button user-login">Log In</button>
+        <button class="header__button user-logout is-hidden">Log Out</button>
       </div>
     </header>
     <main></main>
+
     <div class="backdrop mobile-menu-backdrop is-hidden">
       <div class="mobile-menu">
         <ul class="mobile-menu__nav-list">
@@ -110,6 +112,22 @@
         </form>
       </div>
     </div>
+    <div class="backdrop change-book-backdrop is-hidden">
+      <div class="change-book__modal-window">
+        <form data-action="change-book" class="change-book__form">
+          <input type="text" placeholder="Book's name" id="change-book-name" />
+          <input
+            type="text"
+            placeholder="Description"
+            id="change-book-description"
+          />
+          <input type="file" id="change-book-file" />
+          <div class="change-book__content">
+            <button>Change</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="backdrop book-decriprion__backdrop is-hidden">
       <div class="book-description__window"></div>
     </div>
@@ -124,8 +142,8 @@
     <script type="module" src="./js/finder.js"></script>
     <script type="module" src="./js/close-modals.js"></script>
     <script type="module" src="./js/burger-menu.js"></script>
-    <script type="module" src="./js/login-modal.js"></script>
-    <script type="module" src="./js/create-book.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/book.js"></script>
     <script type="module" src="./js/read-books.js"></script>
     <script type="module" src="./js/render.js"></script>
   </body>

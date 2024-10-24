@@ -3,6 +3,18 @@ main {
   min-height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: 200px;
   gap: 40px;
+}
+.book {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 25px;
+    background-color: rgb(225, 143, 0);
+  }
 }
