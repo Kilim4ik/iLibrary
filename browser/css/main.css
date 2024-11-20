@@ -196,6 +196,20 @@ main {
   font-size: 12px;
 }
 
+.email-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+}
+.email-input-container input {
+  border: none;
+  outline: none;
+}
+.email-input-container p {
+  font-size: 12px;
+  margin-right: 5px;
+}
+
 .book-description__content {
   width: 50%;
 }

@@ -10,10 +10,20 @@ import {
   labelUser,
   logOutButton,
   logInButton,
+  sugnUpInputs,
 } from "./constants.js";
 import { validationCloseModal, closeModalWindow } from "./close-modals.js";
 import { navigation } from "./nav.js";
 import { getUser, createUser } from "./dataUsersComands.js";
+import { sendEmail } from "./mailer.js";
+
+console.log("test");
+const start = async () => {
+  const code = await sendEmail("lavrovskiy.danya@gmail.com");
+  console.log(code); // Теперь код будет доступен здесь
+};
+start();
+
 const users = await getUser();
 
 header.addEventListener("click", (e) => {
@@ -60,16 +70,20 @@ loginForm.addEventListener("submit", (e) => {
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
   closeModalWindow(e);
-
-  let arr = [];
-  for (let elem of signUpForm.children) {
-    arr.push(elem.value);
-  }
-  createUser({
-    login: arr[0],
-    email: arr[1],
-    password: arr[2],
+  const obj = {};
+  sugnUpInputs.forEach((elem) => {
+    obj[elem.name] = elem.value;
   });
+  if (
+    obj.login.trim() === "" ||
+    obj.email.trim() === "" ||
+    obj.password.trim() === "" ||
+    obj.validNum.trim() === ""
+  )
+    return;
+  console.log(obj);
+
+  createUser(obj);
 });
 
 function switchOnLogOut() {

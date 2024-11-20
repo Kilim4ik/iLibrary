@@ -16,6 +16,7 @@ export const changeBookBackdrop = document.querySelector(
 );
 export const loginForm = document.querySelector(".login__form");
 export const signUpForm = document.querySelector(".signup__form");
+export const sugnUpInputs = signUpForm.querySelectorAll("input");
 export const createBookForm = document.querySelector(".create-book__form");
 export const changeBookForm = document.querySelector(".change-book__form");
 export const header = document.querySelector(".header");

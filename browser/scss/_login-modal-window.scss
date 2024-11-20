@@ -33,3 +33,16 @@
     }
   }
 }
+.email-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  input {
+    border: none;
+    outline: none;
+  }
+  p {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+}

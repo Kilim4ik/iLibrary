@@ -86,9 +86,28 @@
     <div class="backdrop signup-backdrop is-hidden">
       <div class="signup__modal-window">
         <form data-action="signup" class="signup__form">
-          <input type="text" placeholder="name" id="signup-name" />
-          <input type="text" placeholder="email" id="signup-email" />
-          <input type="text" placeholder="password" id="signup-password" />
+          <input type="text" placeholder="name" id="signup-name" name="login" />
+          <div class="email-input-container">
+            <input
+              type="text"
+              placeholder="email"
+              id="signup-email"
+              name="email"
+            />
+            <p>send mail</p>
+          </div>
+          <input
+            type="text"
+            placeholder="code"
+            id="signup-code"
+            name="validNum"
+          />
+          <input
+            type="text"
+            placeholder="password"
+            id="signup-password"
+            name="password"
+          />
           <div class="signup__content">
             <p>I have account</p>
             <button>Continue</button>
