@@ -23,8 +23,8 @@ export const createBook = (book) => {
       // handle error
     });
 };
-export const getBook = () => {
-  return fetch(booksURL, {
+export const getBook = (page) => {
+  return fetch(`${booksURL}`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
@@ -74,6 +74,26 @@ export const deleteBook = (bookID) => {
     })
     .then((books) => {
       // Do something with deleted task
+    })
+    .catch((error) => {
+      // handle error
+    });
+};
+export const filterBooksByAuthor = (author) => {
+  return fetch(`${booksURL}?bookAuthor=${author}`, {
+    method: "GET",
+    headers: { "content-type": "application/json" },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // handle error
+    })
+    .then((books) => {
+      // Do something with the list of tasks
+
+      return books;
     })
     .catch((error) => {
       // handle error

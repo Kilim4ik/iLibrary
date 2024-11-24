@@ -1,0 +1,23 @@
+.pagination {
+  width: 80px;
+  height: 80px;
+  order: 99999;
+  align-self: center;
+  justify-self: center;
+  img {
+    width: 60px;
+  }
+}
+// 680 - 920
+
+@media (min-width: 680px) and (max-width: 919px) {
+  .pagination {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}
+@media (min-width: 1160px) {
+  .pagination {
+    grid-column-start: 3;
+  }
+}

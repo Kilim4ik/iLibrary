@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #854318;
+}
+
 .is-hidden {
   display: none !important;
 }
@@ -131,8 +135,10 @@ body:has(.burger-menu__checker:checked) {
   }
 }
 main {
+  margin: 0 auto;
   background-color: #854318;
   min-height: 100%;
+  max-width: 1399px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 200px;
@@ -196,16 +202,7 @@ main {
   font-size: 12px;
 }
 
-.email-input-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid grey;
-}
-.email-input-container input {
-  border: none;
-  outline: none;
-}
-.email-input-container p {
+p[data-action=send-email] {
   font-size: 12px;
   margin-right: 5px;
 }
@@ -258,5 +255,27 @@ main {
 @media (max-width: 550px) {
   .book-description__window {
     min-height: 60%;
+  }
+}
+.pagination {
+  width: 80px;
+  height: 80px;
+  order: 99999;
+  align-self: center;
+  justify-self: center;
+}
+.pagination img {
+  width: 60px;
+}
+
+@media (min-width: 680px) and (max-width: 919px) {
+  .pagination {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}
+@media (min-width: 1160px) {
+  .pagination {
+    grid-column-start: 3;
   }
 }

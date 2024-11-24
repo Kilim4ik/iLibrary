@@ -1,6 +1,8 @@
 main {
+  margin: 0 auto;
   background-color: $background-color;
   min-height: 100%;
+  max-width: 1399px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 200px;

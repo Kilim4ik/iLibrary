@@ -5,25 +5,24 @@ import {
   createBookBackdrop,
   loginForm,
   signUpForm,
+  code,
   createBookForm,
   header,
   labelUser,
   logOutButton,
   logInButton,
   sugnUpInputs,
+  setCode,
+  setUsers,
 } from "./constants.js";
 import { validationCloseModal, closeModalWindow } from "./close-modals.js";
 import { navigation } from "./nav.js";
+import { filterBooksByAuthor } from "./dataBooksComands.js";
 import { getUser, createUser } from "./dataUsersComands.js";
 import { sendEmail } from "./mailer.js";
 
 console.log("test");
-const start = async () => {
-  const code = await sendEmail("lavrovskiy.danya@gmail.com");
-  console.log(code); // Теперь код будет доступен здесь
-};
-start();
-
+console.log(await filterBooksByAuthor("Ben Beer"));
 const users = await getUser();
 
 header.addEventListener("click", (e) => {
@@ -46,7 +45,18 @@ loginBackdrop.addEventListener("click", (e) => {
 });
 signUpBackdrop.addEventListener("click", (e) => {
   validationCloseModal();
-  if (e.target.nodeName == "P") {
+  if (e.target.dataset.action == "send-email") {
+    const obj = {};
+    sugnUpInputs.forEach((elem) => {
+      obj[elem.name] = elem.value;
+    });
+    const fetchData = async () => {
+      setCode(await sendEmail(obj.email.trim()));
+      console.log(code);
+    };
+    fetchData();
+  }
+  if (e.target.dataset.action == "change-window") {
     signUpBackdrop.classList.toggle("is-hidden");
     loginBackdrop.classList.toggle("is-hidden");
   }
@@ -78,12 +88,14 @@ signUpForm.addEventListener("submit", (e) => {
     obj.login.trim() === "" ||
     obj.email.trim() === "" ||
     obj.password.trim() === "" ||
-    obj.validNum.trim() === ""
+    obj.validNum.trim() !== String(code)
   )
     return;
+  delete obj.validNum;
   console.log(obj);
 
   createUser(obj);
+  setUsers();
 });
 
 function switchOnLogOut() {

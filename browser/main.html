@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ILibrary</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
@@ -48,7 +48,12 @@
         <button class="header__button user-logout is-hidden">Log Out</button>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="pagination">
+        <img src="../src/svg/refresh-ccw-svgrepo-com.svg" alt="" />
+        <p>load more</p>
+      </div>
+    </main>
 
     <div class="backdrop mobile-menu-backdrop is-hidden">
       <div class="mobile-menu">
@@ -87,15 +92,15 @@
       <div class="signup__modal-window">
         <form data-action="signup" class="signup__form">
           <input type="text" placeholder="name" id="signup-name" name="login" />
-          <div class="email-input-container">
-            <input
-              type="text"
-              placeholder="email"
-              id="signup-email"
-              name="email"
-            />
-            <p>send mail</p>
-          </div>
+
+          <input
+            type="text"
+            placeholder="email"
+            id="signup-email"
+            name="email"
+          />
+          <p data-action="send-email">send mail</p>
+
           <input
             type="text"
             placeholder="code"
@@ -109,7 +114,7 @@
             name="password"
           />
           <div class="signup__content">
-            <p>I have account</p>
+            <p data-action="change-window">I have account</p>
             <button>Continue</button>
           </div>
         </form>
@@ -165,5 +170,6 @@
     <script type="module" src="./js/book.js"></script>
     <script type="module" src="./js/read-books.js"></script>
     <script type="module" src="./js/render.js"></script>
+    <script type="module" src="./js/pagination.js"></script>
   </body>
 </html>

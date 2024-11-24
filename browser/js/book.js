@@ -1,6 +1,12 @@
 import { createBook } from "./dataBooksComands.js";
-import { changeBookForm, createBookForm } from "./constants.js";
+import {
+  booksReg,
+  changeBookForm,
+  createBookForm,
+  setBooks,
+} from "./constants.js";
 import { validationCloseModal, closeModalWindow } from "./close-modals.js";
+import { renderBooks } from "./render.js";
 
 class Book {
   constructor({ bookName, description, bookFile }) {
@@ -15,16 +21,19 @@ createBookForm.addEventListener("submit", (e) => {
   closeModalWindow(e);
 
   let arr = Array(createBookForm.children);
-  console.log(createBookForm.children[2].files[0]);
   if (arr.some((elem) => elem == "")) return;
-  if (arr[2].files[0].size > 5) {
-  }
+  // if (arr[2].files[0].size > 5) {
+  // }
+
   const newBook = new Book({
-    bookName: arr[0],
-    description: arr[1],
-    bookFile: arr[2],
+    bookName: arr[0][0].value,
+    description: arr[0][1].value,
+    bookFile: arr[0][2].files,
   });
+  console.log(newBook);
   createBook(newBook);
+  setBooks();
+  setTimeout(renderBooks(booksReg), 3000);
 });
 changeBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
