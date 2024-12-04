@@ -203,10 +203,41 @@ main {
 }
 
 p[data-action=send-email] {
+  padding: 4px 8px;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: -15px 0;
   font-size: 12px;
-  margin-right: 5px;
+  align-self: flex-end;
+}
+p[data-action=send-email].active {
+  background-color: lightcyan;
+  box-shadow: 1px 1px 2px inset;
 }
 
+.message-window {
+  position: absolute;
+  z-index: 9999;
+  right: 0;
+  padding: 8px 4px;
+  max-width: 200px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 680px) {
+  .message-window {
+    display: flex;
+    padding: 8px 4px;
+    max-width: 200px;
+  }
+}
+@media (min-width: 680px) {
+  .message-window {
+    gap: 12px;
+    padding: 12px 6px;
+    max-width: 200px;
+  }
+}
 .book-description__content {
   width: 50%;
 }

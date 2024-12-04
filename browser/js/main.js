@@ -20,9 +20,8 @@ import { navigation } from "./nav.js";
 import { filterBooksByAuthor } from "./dataBooksComands.js";
 import { getUser, createUser } from "./dataUsersComands.js";
 import { sendEmail } from "./mailer.js";
+import { showError } from "./notify.js";
 
-console.log("test");
-console.log(await filterBooksByAuthor("Ben Beer"));
 const users = await getUser();
 
 header.addEventListener("click", (e) => {
@@ -45,14 +44,22 @@ loginBackdrop.addEventListener("click", (e) => {
 });
 signUpBackdrop.addEventListener("click", (e) => {
   validationCloseModal();
-  if (e.target.dataset.action == "send-email") {
+  if (
+    e.target.dataset.action == "send-email" &&
+    !e.target.classList.contains("active")
+  ) {
+    e.target.classList.add("active");
+
     const obj = {};
     sugnUpInputs.forEach((elem) => {
       obj[elem.name] = elem.value;
     });
+    setTimeout(() => {
+      e.target.classList.remove("active");
+    }, 10000);
     const fetchData = async () => {
       setCode(await sendEmail(obj.email.trim()));
-      console.log(code);
+  
     };
     fetchData();
   }
@@ -79,20 +86,28 @@ loginForm.addEventListener("submit", (e) => {
 });
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  closeModalWindow(e);
   const obj = {};
   sugnUpInputs.forEach((elem) => {
     obj[elem.name] = elem.value;
   });
-  if (
-    obj.login.trim() === "" ||
-    obj.email.trim() === "" ||
-    obj.password.trim() === "" ||
-    obj.validNum.trim() !== String(code)
-  )
+  if (obj.login.trim() === "") {
+    showError("Your account has not been created. This name is used");
     return;
+  }
+  if (obj.email.trim() === "") {
+    showError("Your account has not been created. This email is used");
+
+    return;
+  }
+  if (obj.validNum.trim() !== String(code)) {
+    showError(
+      "Your account has not been created. The code was entered incorrectly"
+    );
+
+    return;
+  }
   delete obj.validNum;
-  console.log(obj);
+  closeModalWindow(e);
 
   createUser(obj);
   setUsers();

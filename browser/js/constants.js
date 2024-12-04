@@ -38,4 +38,4 @@ export const bookBackdrop = document.querySelector(
   ".book-decriprion__backdrop"
 );
 export const bookModal = document.querySelector(".book-description__window");
-export const pagination = document.querySelector(".pagination")
+export const pagination = document.querySelector(".pagination");

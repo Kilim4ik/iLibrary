@@ -24,7 +24,7 @@ export const createBook = (book) => {
     });
 };
 export const getBook = (page) => {
-  return fetch(`${booksURL}`, {
+  return fetch(`${booksURL}?p=${page}&l=15`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
@@ -81,6 +81,26 @@ export const deleteBook = (bookID) => {
 };
 export const filterBooksByAuthor = (author) => {
   return fetch(`${booksURL}?bookAuthor=${author}`, {
+    method: "GET",
+    headers: { "content-type": "application/json" },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // handle error
+    })
+    .then((books) => {
+      // Do something with the list of tasks
+
+      return books;
+    })
+    .catch((error) => {
+      // handle error
+    });
+};
+export const filterBooksByName = (name) => {
+  return fetch(`${booksURL}?bookName=${name}`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })

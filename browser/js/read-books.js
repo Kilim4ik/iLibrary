@@ -36,7 +36,7 @@ container.addEventListener("click", (e) => {
     if (e.target.dataset.action == "change") {
       closeModalWindow();
       changeBookBackdrop.classList.remove("is-hidden");
-      console.log(book);
+
       let form = [];
       for (let elem of changeBookForm.children) {
         form.push(elem);

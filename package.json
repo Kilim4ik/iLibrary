@@ -12,6 +12,7 @@
   "author": "Danylo Lavrovskyi",
   "license": "ISC",
   "devDependencies": {
+    "@pnotify/core": "^5.2.0",
     "dotenv": "^16.4.5",
     "http-server": "^14.1.1",
     "path-browserify": "^1.0.1",

@@ -17,5 +17,5 @@ export const navigation = async (e) => {
       renderBooks(await filterBooksByAuthor(thisUser.login));
     }
   }
-  if (e.target.id == "all-books") renderBooks(booksReg);
+  if (e.target.id == "all-books") renderBooks(booksReg, true);
 };

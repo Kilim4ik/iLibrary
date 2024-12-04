@@ -99,7 +99,7 @@
             id="signup-email"
             name="email"
           />
-          <p data-action="send-email">send mail</p>
+          <p class="" data-action="send-email">send mail</p>
 
           <input
             type="text"
@@ -155,9 +155,12 @@
     <div class="backdrop book-decriprion__backdrop is-hidden">
       <div class="book-description__window"></div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
     <script>
       const allBooks = [];
       const users = [];
+      let page = 1;
+
       let thisUser = JSON.parse(localStorage.getItem("user")) || undefined;
     </script>
 
