@@ -99,7 +99,7 @@
             id="signup-email"
             name="email"
           />
-          <p data-action="send-email">send mail</p>
+          <p class="" data-action="send-email">send mail</p>
 
           <input
             type="text"
@@ -155,13 +155,24 @@
     <div class="backdrop book-decriprion__backdrop is-hidden">
       <div class="book-description__window"></div>
     </div>
+    <form
+      id="uploadForm"
+      action="http://localhost:3000/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" required />
+      <button type="submit">Загрузить</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
     <script>
-      const allBooks = [];
-      const users = [];
+      let page = 1;
+
       let thisUser = JSON.parse(localStorage.getItem("user")) || undefined;
     </script>
 
     <!-- <script type="module" src="./js/arrays.js"></script> -->
+    <script src="./js/multer.js"></script>
     <script type="module" src="./js/nav.js"></script>
     <script type="module" src="./js/finder.js"></script>
     <script type="module" src="./js/close-modals.js"></script>

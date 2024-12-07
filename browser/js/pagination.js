@@ -1,13 +1,17 @@
 "use strict";
 
-import { booksReg, pagination } from "./constants";
-import { getBook } from "./dataBooksComands";
-import { renderBooks } from "./render";
+import { booksReg, container, setBooks } from "./constants.js";
+import { getBook } from "./dataBooksComands.js";
+import { updateRenderBooks } from "./render.js";
 
-let page = 1;
-pagination.addEventListener("click", () => {
-  page++;
-  getBook(page);
-  renderBooks(booksReg);
-  console.log("pagination!");
+container.addEventListener("click", async (e) => {
+  const button = e.target.closest(".pagination");
+  if (button) {
+    page++;
+    const currentScroll = window.scrollY;
+    const arr = await getBook(page);
+    updateRenderBooks(arr);
+    window.scrollTo(0, currentScroll);
+    setBooks(page);
+  }
 });

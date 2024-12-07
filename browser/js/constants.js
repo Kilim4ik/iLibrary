@@ -2,8 +2,9 @@ import { getBook } from "./dataBooksComands.js";
 import { getUser } from "./dataUsersComands.js";
 export let booksReg = await getBook(1);
 export const setBooks = async (page) => {
-  booksReg += await getBook(page);
+  booksReg.push(...(await getBook(page)));
 };
+
 export let users = await getUser();
 export const setUsers = async () => {
   users = await getUser();
@@ -38,4 +39,4 @@ export const bookBackdrop = document.querySelector(
   ".book-decriprion__backdrop"
 );
 export const bookModal = document.querySelector(".book-description__window");
-export const pagination = document.querySelector(".pagination")
+export const pagination = document.querySelector(".pagination");

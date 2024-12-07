@@ -6,10 +6,23 @@ import {
   booksReg,
   changeBookBackdrop,
   changeBookForm,
+  pagination,
 } from "./constants.js";
-import { changeBook, deleteBook } from "./dataBooksComands.js";
-container.addEventListener("click", (e) => {
-  const book = booksReg.find((elem) => elem.bookName == e.target.alt);
+import {
+  changeBook,
+  deleteBook,
+  filterBooksByName,
+} from "./dataBooksComands.js";
+container.addEventListener("click", async (e) => {
+  console.log(booksReg.length);
+  let book = booksReg.find((elem) => elem.bookName == e.target.alt);
+
+  console.log(e.target.alt);
+  console.log(book);
+  if (!book && e.target.alt) {
+    book = await filterBooksByName(e.target.alt);
+    book = book[0];
+  }
   if (book) {
     validationCloseModal();
     bookBackdrop.classList.remove("is-hidden");
