@@ -31,7 +31,12 @@
         </div>
         <ul class="header__nav-list">
           <li>
-            <button class="header__button" id="create-book">Create book</button>
+            <img
+              class="create-book-button"
+              id="create-book"
+              src="../src/svg/addBook.svg"
+              alt=""
+            />
           </li>
           <li>
             <button class="header__button" id="user-books">My books</button>
@@ -42,7 +47,7 @@
         </ul>
       </nav>
       <input type="text" class="header__search" />
-      <div class="rotation">
+      <div class="header__authorization">
         <p class="header__user-name"></p>
         <button class="header__button user-login">Log In</button>
         <button class="header__button user-logout is-hidden">Log Out</button>
@@ -122,14 +127,40 @@
     </div>
     <div class="backdrop create-book-backdrop is-hidden">
       <div class="create-book__modal-window">
-        <form data-action="create-book" class="create-book__form">
-          <input type="text" placeholder="Book's name" id="create-book-name" />
+        <form
+          data-action="create-book"
+          class="create-book__form"
+          action="/profile"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="text"
+            placeholder="Book's name"
+            id="create-book-name"
+            maxlength="30"
+          />
           <input
             type="text"
             placeholder="Description"
             id="create-book-description"
+            maxlength="180"
           />
-          <input type="file" id="create-book-file" />
+
+          <input
+            class="uploading-input uploading-input--pdf"
+            type="file"
+            name="file"
+            placeholder="pdf file"
+          />
+
+          <input
+            class="uploading-input uploading-input--png"
+            type="file"
+            name="photo"
+            placeholder="png file"
+          />
+
           <div class="create-book__content">
             <button>Create</button>
           </div>
@@ -139,13 +170,34 @@
     <div class="backdrop change-book-backdrop is-hidden">
       <div class="change-book__modal-window">
         <form data-action="change-book" class="change-book__form">
-          <input type="text" placeholder="Book's name" id="change-book-name" />
+          <input
+            type="text"
+            placeholder="Book's name"
+            id="change-book-name"
+            maxlength="30"
+            name="bookName"
+          />
           <input
             type="text"
             placeholder="Description"
             id="change-book-description"
+            maxlength="180"
+            name="description"
           />
-          <input type="file" id="change-book-file" />
+          <input
+            class="uploading-input uploading-input--pdf"
+            type="file"
+            name="file"
+            placeholder="pdf file"
+          />
+
+          <input
+            class="uploading-input uploading-input--png"
+            type="file"
+            name="photo"
+            placeholder="png file"
+          />
+
           <div class="change-book__content">
             <button>Change</button>
           </div>
@@ -155,32 +207,18 @@
     <div class="backdrop book-decriprion__backdrop is-hidden">
       <div class="book-description__window"></div>
     </div>
-    <form
-      id="uploadForm"
-      action="http://localhost:3000/upload"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <input type="file" name="file" required />
-      <button type="submit">Загрузить</button>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
+<input type="checkbox" id="button">
     <script>
       let page = 1;
-
-      let thisUser = JSON.parse(localStorage.getItem("user")) || undefined;
+      let thisUser = undefined;
     </script>
 
-    <!-- <script type="module" src="./js/arrays.js"></script> -->
-    <script src="./js/multer.js"></script>
-    <script type="module" src="./js/nav.js"></script>
+    <script src="./js/auto-login.js"></script>
     <script type="module" src="./js/finder.js"></script>
-    <script type="module" src="./js/close-modals.js"></script>
     <script type="module" src="./js/burger-menu.js"></script>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/book.js"></script>
     <script type="module" src="./js/read-books.js"></script>
-    <script type="module" src="./js/render.js"></script>
     <script type="module" src="./js/pagination.js"></script>
   </body>
 </html>

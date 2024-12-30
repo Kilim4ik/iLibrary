@@ -1,17 +1,34 @@
-document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-  e.preventDefault(); // Останавливает стандартное поведение формы
 
-  const formData = new FormData(e.target); // Получаем данные из формы
-
+export const addFile = async (form) => {
+  const formData = new FormData(form); // Формируем данные формы
   try {
-    const response = await fetch("http://localhost:3000/upload", {
+    const response = await fetch(`http://localhost:3000/api/upload`, {
       method: "POST",
       body: formData,
     });
-
+    if (!response.ok) throw new Error("Ошибка сети или сервера");
     const result = await response.json();
-    console.log("Файл успешно загружен:", result);
+    return result.files;
   } catch (error) {
     console.error("Ошибка при загрузке файла:", error);
+    return error
   }
-});
+};
+export const deleteFile = async (fileName) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/upload/${fileName}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Помилка мережі або сервера`);
+    }
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Помилка при видаленні файлу:", error);
+    throw error;
+  }
+};

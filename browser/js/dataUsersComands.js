@@ -78,3 +78,30 @@ export const deleteUser = (userID) => {
       // handle error
     });
 };
+
+export const fetchUser = (email, password) => {
+  return fetch(`${usersURL}?email=${email}`)
+    .then((res) => res.json())
+    .then((user) => {
+      if (user[0].password === password) {
+        return user[0];
+      }
+    })
+    .catch((err) => console.log("Error:", err));
+};
+
+export const isLoginUsedByData = (meaning, data) => {
+  return fetch(`${usersURL}?${meaning}=${data}`)
+    .then((res) => res.json())
+    .then((usersArr) =>
+      Array.isArray(usersArr)
+        ? usersArr.some((user) => user[meaning] === data)
+        : false
+    )
+    .catch(() => false);
+};
+export const isUserKeyUsed = (key) => {
+  return fetch(`${usersURL}?userKey=${key}`)
+    .then((res) => res.json())
+    .then((usersArr) => usersArr.length === 1);
+};

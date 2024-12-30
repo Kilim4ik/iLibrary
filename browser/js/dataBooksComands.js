@@ -1,13 +1,8 @@
 const booksURL = "https://6707785ca0e04071d22a73ed.mockapi.io/books";
 export const createBook = (book) => {
-  //   bookName: "test",
-  //   description: "description",
-  //   bookFile: null,
-  //   bookAuthor: "Danylo Nutella",
   fetch(booksURL, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    // Send your data in the request body as JSON
     body: JSON.stringify(book),
   })
     .then((res) => {
@@ -43,11 +38,14 @@ export const getBook = (page) => {
       // handle error
     });
 };
-export const changeBook = (bookID, { bookName, description, bookFile }) => {
+export const changeBook = (
+  bookID,
+  { bookName, description, bookFile, bookPhoto }
+) => {
   fetch(`${booksURL}/${bookID}`, {
     method: "PUT", // or PATCH
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ bookName, description, bookFile }),
+    body: JSON.stringify({ bookName, description, bookFile, bookPhoto }),
   })
     .then((res) => {
       if (res.ok) {

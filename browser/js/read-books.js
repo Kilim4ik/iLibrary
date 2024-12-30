@@ -6,19 +6,19 @@ import {
   booksReg,
   changeBookBackdrop,
   changeBookForm,
-  pagination,
+  changeBookInputs,
 } from "./constants.js";
 import {
   changeBook,
   deleteBook,
   filterBooksByName,
 } from "./dataBooksComands.js";
+import { addFile } from "./multer.js";
+import { showError } from "./notify.js";
+
 container.addEventListener("click", async (e) => {
-  console.log(booksReg.length);
   let book = booksReg.find((elem) => elem.bookName == e.target.alt);
 
-  console.log(e.target.alt);
-  console.log(book);
   if (!book && e.target.alt) {
     book = await filterBooksByName(e.target.alt);
     book = book[0];
@@ -27,7 +27,7 @@ container.addEventListener("click", async (e) => {
     validationCloseModal();
     bookBackdrop.classList.remove("is-hidden");
     bookModal.innerHTML = `
-  <img class="book-description__img" src="${book.photo}" alt="" />
+  <img class="book-description__img" src="${book.bookPhoto}" alt="" />
   <div class="book-description__content">
     <h2 class="book-description__book-name">${book.bookName}</h2>
     <h3 class="book-description__book-authtor">${book.bookAuthor}</h3>
@@ -49,28 +49,48 @@ container.addEventListener("click", async (e) => {
     if (e.target.dataset.action == "change") {
       closeModalWindow();
       changeBookBackdrop.classList.remove("is-hidden");
-      console.log(book);
+
       let form = [];
       for (let elem of changeBookForm.children) {
         form.push(elem);
       }
       form[0].value = book.bookName;
       form[1].value = book.description;
-      changeBookForm.addEventListener("submit", (e) => {
+      changeBookForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        let arr = Array(changeBookForm.children);
+        const changedBook = {
+          bookName: arr[0][0].value,
+          description: arr[0][1].value,
+        };
         if (
-          form[0].value == "" ||
-          form[0].value == " " ||
-          form[1].value == "" ||
-          form[1].value == " "
-        )
+          changedBook.bookName.trim() === "" ||
+          (await filterBooksByName(changedBook.bookName.trim()))
+        ) {
+          showError(
+            "The book was not created, the title field is empty or busy"
+          );
           return;
-        changeBook(book.id, {
-          bookName: form[0].value,
-          bookAuthor: book.bookAuthor,
-          description: form[1].value,
-          bookFile: form[2] || book.bookFile,
-        });
+        }
+        if (changedBook.description.trim() === "") {
+          showError("The book was not created, the description field is empty");
+          return;
+        }
+        try {
+          const res = await addFile(changeBookForm);
+          changedBook["bookFile"] = `../${res.file[0].path}`;
+
+          changedBook["bookPhoto"] = `../${res.photo[0].path}`;
+        } catch (err) {
+          console.log(err);
+          return;
+        }
+
+        closeModalWindow(e);
+
+        console.log(changedBook);
+        changeBook(book.id, changedBook);
       });
     }
     if (e.target.dataset.action == "delete") {

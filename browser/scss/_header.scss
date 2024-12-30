@@ -17,12 +17,20 @@
     background-color: $background-color;
     opacity: 0.5;
     border-radius: 5px;
+    display: grid;
+    justify-self: end;
+    &:focus{
+      opacity: 0.7;
+    }
   }
   &__search {
     width: 60%;
   }
 }
-
+.create-book-button {
+  display: block;
+  width: 30px;
+}
 @media (width > 800px) {
   .header {
     grid-template-columns: 1fr 2fr 1fr;

@@ -1,5 +1,5 @@
 "use strict";
-import { booksReg } from "./constants.js";
+import { booksReg, container } from "./constants.js";
 
 function addPagination() {
   document.querySelector("main").insertAdjacentHTML(
@@ -11,9 +11,13 @@ function addPagination() {
   );
 }
 export function renderBooks(arr, isRenderPagination) {
+  if (arr === undefined) {
+    container.innerHTML = `<div style="position: absolute; top: calc(50% - 8px); left: calc(50% - 50px);">Book not found</div>`;
+    return;
+  }
   const newList = arr.reduce(
     (acc, book) =>
-      (acc += ` <img class="book" src="${book.photo}" alt="${book.bookName}">`),
+      (acc += `<div class='book-wrapper'> <img class="book" src="${book.bookPhoto}" alt="${book.bookName}"> </div>`),
     ``
   );
 
@@ -26,7 +30,7 @@ export function renderBooks(arr, isRenderPagination) {
 export function updateRenderBooks(arr) {
   const newList = arr.reduce(
     (acc, book) =>
-      (acc += ` <img class="book" src="${book.photo}" alt="${book.bookName}">`),
+      (acc += `<div class='book-wrapper'> <img class="book" src="${book.bookPhoto}" alt="${book.bookName}"> </div>`),
     ``
   );
 

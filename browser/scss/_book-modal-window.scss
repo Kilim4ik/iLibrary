@@ -3,8 +3,9 @@
     width: 50%;
   }
   &__window {
-    min-width: 80%;
-    min-height: 70%;
+    width: 85%;
+    height: 70%;
+    gap: 20px;
     background-color: #fff;
     border-radius: 12px;
     display: flex;
@@ -12,18 +13,25 @@
   }
   &__img {
     display: block;
-    height: 100%;
-    width: 50%;
+    max-width: 50%;
+    height: auto;
+  }
+  &__button-container {
+    display: grid;
+    gap: 8px;
   }
   &__book {
     &-name {
       font-size: 20px;
+      text-wrap: wrap;
     }
     &-authtor {
       font-size: 16px;
+      text-wrap: wrap;
     }
     &-description {
       margin-bottom: 20px;
+      text-wrap: wrap;
     }
     &-button {
       background-color: $main-txt-color;
@@ -31,7 +39,9 @@
       border: 1px solid black;
       border-radius: 16px;
     }
+
     &-link {
+      text-align: center;
       text-decoration: none;
       color: #000;
       padding: 8px 12px;
@@ -40,12 +50,31 @@
     }
   }
 }
+
+.uploading-input {
+  &::before {
+    content: "";
+    position: absolute;
+    transform: translateY(-17px);
+    color: lightslategrey;
+  }
+  &--pdf::before {
+    content: "Upload pdf file";
+  }
+  &--png::before {
+    content: "Upload png file";
+  }
+}
 @media (max-width: 1080px) {
   .book-description {
     &__window {
-      max-width: 80%;
-      max-height: 40%;
+      width: 80%;
     }
+  }
+}
+@media (max-width: 860px) {
+  .book-description__img {
+    height: fit-content;
   }
 }
 @media (max-width: 550px) {

@@ -1,29 +1,26 @@
 import {
-  // users,
   loginBackdrop,
   signUpBackdrop,
-  createBookBackdrop,
   loginForm,
   signUpForm,
   code,
-  createBookForm,
   header,
   labelUser,
   logOutButton,
   logInButton,
   sugnUpInputs,
   setCode,
-  setUsers,
 } from "./constants.js";
 import { validationCloseModal, closeModalWindow } from "./close-modals.js";
 import { navigation } from "./nav.js";
-import { filterBooksByAuthor } from "./dataBooksComands.js";
-import { getUser, createUser } from "./dataUsersComands.js";
+import {
+  createUser,
+  fetchUser,
+  isLoginUsedByData,
+} from "./dataUsersComands.js";
+import { generateUserKey } from "./generateUserKey.js";
 import { sendEmail } from "./mailer.js";
 import { showError } from "./notify.js";
-
-const users = await getUser();
-
 header.addEventListener("click", (e) => {
   if (e.target == logInButton) {
     loginBackdrop.classList.remove("is-hidden");
@@ -67,33 +64,43 @@ signUpBackdrop.addEventListener("click", (e) => {
     loginBackdrop.classList.toggle("is-hidden");
   }
 });
-loginForm.addEventListener("submit", (e) => {
+loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const user = users.find((elem) => elem.email == loginForm.children[0].value);
-  if (user.password == loginForm.children[1].value) {
+  const user = await fetchUser(
+    loginForm.children[0].value,
+    loginForm.children[1].value
+  );
+
+  if (user) {
+    console.log(user);
     thisUser = user;
-    labelUser.textContent = thisUser.login;
+
+    labelUser.textContent = user.login;
     closeModalWindow();
-    localStorage.setItem("user", JSON.stringify(thisUser));
+    localStorage.setItem("user", JSON.stringify(user.userKey));
 
     switchOnLogOut();
+
     logOutButton.addEventListener("click", () => {
       switchOnLogIn();
       closeModalWindow(e);
     });
+  } else {
+    showError("The email or password was entered incorrectly");
   }
 });
-signUpForm.addEventListener("submit", (e) => {
+signUpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const obj = {};
   sugnUpInputs.forEach((elem) => {
     obj[elem.name] = elem.value;
   });
-  if (obj.login.trim() === "") {
+
+  if (await isLoginUsedByData("login", obj.login.trim())) {
     showError("Your account has not been created. This name is used");
     return;
   }
-  if (obj.email.trim() === "") {
+  if (await isLoginUsedByData("email", obj.email.trim())) {
     showError("Your account has not been created. This email is used");
 
     return;
@@ -102,21 +109,24 @@ signUpForm.addEventListener("submit", (e) => {
     showError(
       "Your account has not been created. The code was entered incorrectly"
     );
-
     return;
   }
+  generateUserKey(obj);
+
   delete obj.validNum;
   closeModalWindow(e);
 
   createUser(obj);
-  setUsers();
 });
 
 function switchOnLogOut() {
   logOutButton.classList.remove("is-hidden");
   logInButton.classList.add("is-hidden");
 
-  labelUser.textContent = thisUser.login;
+  labelUser.textContent =
+    thisUser.login.length > 11
+      ? thisUser.login.slice(0, 11) + "..."
+      : thisUser.login;
 }
 function switchOnLogIn() {
   logInButton.classList.remove("is-hidden");
@@ -127,3 +137,8 @@ function switchOnLogIn() {
   labelUser.textContent = "";
 }
 if (thisUser) switchOnLogOut();
+
+document.querySelector("#button").addEventListener("click", (e) => {
+  if (e.target.checked) console.log("!!!!");
+  console.log(e.target);
+});

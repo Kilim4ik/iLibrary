@@ -1,6 +1,6 @@
 "use strict";
 
-import { headerInput, booksReg, container, pagination } from "./constants.js";
+import { headerInput, container, pagination } from "./constants.js";
 import { filterBooksByName, getBook } from "./dataBooksComands.js";
 import { renderBooks, updateRenderBooks } from "./render.js";
 

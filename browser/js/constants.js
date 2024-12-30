@@ -1,13 +1,8 @@
 import { getBook } from "./dataBooksComands.js";
-import { getUser } from "./dataUsersComands.js";
+
 export let booksReg = await getBook(1);
 export const setBooks = async (page) => {
   booksReg.push(...(await getBook(page)));
-};
-
-export let users = await getUser();
-export const setUsers = async () => {
-  users = await getUser();
 };
 
 export const headerInput = document.querySelector(".header__search");
@@ -30,6 +25,8 @@ export const setCode = (val) => {
 };
 export const createBookForm = document.querySelector(".create-book__form");
 export const changeBookForm = document.querySelector(".change-book__form");
+export const changeBookInputs = changeBookForm.querySelectorAll("input");
+
 export const header = document.querySelector(".header");
 export const labelUser = document.querySelector(".header__user-name");
 export const logOutButton = document.querySelector(".user-logout");
@@ -38,5 +35,6 @@ export const container = document.querySelector("main");
 export const bookBackdrop = document.querySelector(
   ".book-decriprion__backdrop"
 );
+export const bookFileInput = document.getElementById("uploadForm");
 export const bookModal = document.querySelector(".book-description__window");
 export const pagination = document.querySelector(".pagination");

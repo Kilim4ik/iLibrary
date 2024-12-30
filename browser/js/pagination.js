@@ -1,6 +1,6 @@
 "use strict";
 
-import { booksReg, container, setBooks } from "./constants.js";
+import { container, setBooks } from "./constants.js";
 import { getBook } from "./dataBooksComands.js";
 import { updateRenderBooks } from "./render.js";
 

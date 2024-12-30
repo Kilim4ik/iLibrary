@@ -5,9 +5,10 @@ import {
   createBookForm,
   setBooks,
 } from "./constants.js";
-import { validationCloseModal, closeModalWindow } from "./close-modals.js";
+import { closeModalWindow } from "./close-modals.js";
 import { renderBooks } from "./render.js";
 import { showError } from "./notify.js";
+import { addFile } from "./multer.js";
 
 class Book {
   constructor({ bookName, description, bookFile }) {
@@ -24,7 +25,6 @@ createBookForm.addEventListener("submit", async (e) => {
   const newBook = new Book({
     bookName: arr[0][0].value,
     description: arr[0][1].value,
-    bookFile: arr[0][2].files,
   });
   if (
     newBook.bookName.trim() === "" ||
@@ -37,12 +37,25 @@ createBookForm.addEventListener("submit", async (e) => {
     showError("The book was not created, the description field is empty");
     return;
   }
+  try {
+    const res = await addFile(createBookForm);
+    console.log(res);
+    newBook["bookFile"] = `../${res.file[0].path}`;
+
+    newBook["bookPhoto"] = `../${res.photo[0].path}`;
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+
   closeModalWindow(e);
   createBook(newBook);
-  setBooks();
-  async () => {
-    setTimeout(renderBooks(booksReg), 3000);
-  };
+  if (page === 1) {
+    setBooks(page);
+    async () => {
+      setTimeout(renderBooks(booksReg), 3000);
+    };
+  }
 });
 changeBookForm.addEventListener("submit", (e) => {
   e.preventDefault();

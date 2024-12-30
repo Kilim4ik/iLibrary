@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 dotenv.config();
 
-app.use(express.json()); // Для парсинга JSON в запросах
+app.use(express.json());
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -15,10 +15,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.PASSWORD,
   },
-  debug: true, // Для отладки
 });
 
-// Маршрут для отправки письма
 app.post("/send-email", async (req, res) => {
   const { email } = req.body;
 
@@ -26,7 +24,7 @@ app.post("/send-email", async (req, res) => {
     return res.status(400).send("Email is required");
   }
 
-  const code = Math.floor(100000 + Math.random() * 900000); // Генерация кода
+  const code = Math.floor(100000 + Math.random() * 900000);
 
   const mailOptions = {
     from: process.env.EMAIL,
@@ -44,8 +42,7 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Запуск сервера
-const PORT = 9900;
+const PORT = process.env.MAILERPORT;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

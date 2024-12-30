@@ -7,6 +7,13 @@ body {
 .is-hidden {
   display: none !important;
 }
-body:has(.burger-menu__checker:checked) {
+.is-active{
+  opacity: 1;
+}
+body:has(.burger-menu__checker:checked),
+body:not(:has(.backdrop.login-backdrop.is-hidden)),
+body:not(:has(.backdrop.signup-backdrop.is-hidden)),
+body:not(:has(.backdrop.create-book-backdrop.is-hidden)),
+body:not(:has(.backdrop.change-book-backdrop.is-hidden)) {
   overflow: hidden;
 }
