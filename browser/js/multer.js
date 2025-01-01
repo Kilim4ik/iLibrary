@@ -2,7 +2,7 @@
 export const addFile = async (form) => {
   const formData = new FormData(form); // Формируем данные формы
   try {
-    const response = await fetch(`http://localhost:3000/api/upload`, {
+    const response = await fetch(`https://testing-task-1.onrender.com/api/upload`, {
       method: "POST",
       body: formData,
     });

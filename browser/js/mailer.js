@@ -1,6 +1,6 @@
 export const sendEmail = async (email) => {
   try {
-    const response = await fetch("http://localhost:6000/send-email", {
+    const response = await fetch("https://testing-task-jvbe.onrender.com/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
