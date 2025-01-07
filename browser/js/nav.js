@@ -3,7 +3,6 @@ import { validationCloseModal } from "./close-modals.js";
 import { renderBooks } from "./render.js";
 import { filterBooksByAuthor } from "./dataBooksComands.js";
 export const navigation = async (e) => {
-  e.target.focus();
   if (e.target.id == "create-book") {
     validationCloseModal();
 

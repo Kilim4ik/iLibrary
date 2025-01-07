@@ -1,5 +1,5 @@
 "use strict";
-import { booksReg, container } from "./constants.js";
+import { booksReg, container, setBooks } from "./constants.js";
 
 function addPagination() {
   document.querySelector("main").insertAdjacentHTML(
@@ -36,5 +36,4 @@ export function updateRenderBooks(arr) {
 
   document.querySelector("main").insertAdjacentHTML("beforeend", newList);
 }
-
-updateRenderBooks(booksReg);
+setBooks(1).then(() => updateRenderBooks(booksReg));

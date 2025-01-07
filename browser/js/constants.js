@@ -1,6 +1,6 @@
 import { getBook } from "./dataBooksComands.js";
 
-export let booksReg = await getBook(1);
+export let booksReg = [];
 export const setBooks = async (page) => {
   booksReg.push(...(await getBook(page)));
 };
