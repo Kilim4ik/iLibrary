@@ -27,7 +27,9 @@ container.addEventListener("click", async (e) => {
     validationCloseModal();
     bookBackdrop.classList.remove("is-hidden");
     bookModal.innerHTML = `
-  <img class="book-description__img" src="${book.bookPhoto}" alt="" />
+  <img class="book-description__img" src="http://testing-task-1.onrender.com/files/photo/${
+    book.bookPhoto
+  }" alt="" />
   <div class="book-description__content">
     <h2 class="book-description__book-name">${book.bookName}</h2>
     <h3 class="book-description__book-authtor">${book.bookAuthor}</h3>
@@ -39,7 +41,7 @@ container.addEventListener("click", async (e) => {
         <button class="book-description__book-button" data-action='delete'>Delete book</button>`
         : ``
     }
-    <a href="${
+    <a href="http://testing-task-1.onrender.com/files/pdf/${
       book.bookFile
     }" class="book-description__book-link" target="_blank">Read</a>
     </div>

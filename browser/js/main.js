@@ -138,7 +138,7 @@ function switchOnLogIn() {
 }
 if (thisUser) switchOnLogOut();
 
-document.querySelector("#button").addEventListener("click", (e) => {
-  if (e.target.checked) console.log("!!!!");
-  console.log(e.target);
-});
+// document.querySelector("#button").addEventListener("click", (e) => {
+//   if (e.target.checked) console.log("!!!!");
+//   console.log(e.target);
+// });
