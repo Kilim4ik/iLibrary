@@ -1,11 +1,6 @@
 import express from "express";
 import multer from "multer";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
@@ -59,8 +54,6 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: "Что-то пошло не так!", error: err.message });
 });
-
-app.use("/files", express.static(path.join(__dirname, "..", "uploads")));
 
 // Запуск сервера
 const port = process.env.PDFPORT || 3000;
